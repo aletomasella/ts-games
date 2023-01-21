@@ -1,7 +1,9 @@
+import Canvas from "./components/Canvas";
+
 function App() {
   return (
     <>
-      <h1 className="text-xl text-red-500">HOLA</h1>
+      <Canvas />
     </>
   );
 }
