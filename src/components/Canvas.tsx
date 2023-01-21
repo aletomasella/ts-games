@@ -11,6 +11,7 @@ import {
 import { useCanvasContext } from "../hooks";
 import { generateImage } from "../utils";
 import DogAsset from "../assets/DOG_ASSETS.png";
+import { useFrame } from "../hooks/useFrame";
 
 function draw(
   context: CanvasRenderingContext2D,
@@ -33,7 +34,6 @@ function draw(
     SPRITE_WIDTH,
     SPRITE_HEIGHT
   );
-  requestAnimationFrame(() => draw(context, image, frame, state));
 }
 
 interface CanvasProps {
@@ -43,19 +43,12 @@ interface CanvasProps {
 
 const Canvas: React.FC<CanvasProps> = ({ state, setState }) => {
   const { canvasRef, context } = useCanvasContext();
-  const [frame, setFrame] = useState(0);
+  const { frame, setFrame } = useFrame();
 
   if (context) {
     const image = generateImage(DogAsset);
     draw(context, image, frame, state);
   }
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setFrame((frame) => frame + 1);
-    }, 1000 / 60);
-    return () => clearInterval(interval);
-  }, [frame]);
 
   return (
     <>

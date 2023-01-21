@@ -1,7 +1,7 @@
 export const SPRITE_WIDTH = 575;
 export const SPRITE_HEIGHT = 523;
 
-export const STAGGER_DELAY = 3;
+export const STAGGER_DELAY = 2;
 
 export type AnimationState =
   | "IDLE"
