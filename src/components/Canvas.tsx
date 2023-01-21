@@ -36,10 +36,14 @@ function draw(
   requestAnimationFrame(() => draw(context, image, frame, state));
 }
 
-const Canvas = () => {
+interface CanvasProps {
+  state: AnimationState;
+  setState: (state: AnimationState) => void;
+}
+
+const Canvas: React.FC<CanvasProps> = ({ state, setState }) => {
   const { canvasRef, context } = useCanvasContext();
   const [frame, setFrame] = useState(0);
-  const [state, setState] = useState<AnimationState>("FALL");
 
   if (context) {
     const image = generateImage(DogAsset);
@@ -59,7 +63,7 @@ const Canvas = () => {
         height={CANVAS_HEIGHT}
         width={CANVAS_WIDTH}
         ref={canvasRef}
-        className="border border-black transform"
+        className="mx-auto"
       />
     </>
   );
